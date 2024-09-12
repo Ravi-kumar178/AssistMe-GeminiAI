@@ -1,1 +1,6 @@
 /* write your css here */
+.chat-container {
+    overflow-y: auto; /* Enables vertical scrolling */
+    height: calc(100vh - 120px); /* Adjust based on the height of other elements */
+  }
+  

@@ -51,17 +51,17 @@ function App() {
 
   const chatContainerRef = useRef(null); // Reference to the chat container
 
-  // Automatically scroll to the bottom when messages are added
   useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    const container = chatContainerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
     }
-  }, [message]); // Runs whenever a new message is sent/received
+  }, [messages]);
 
   return (
     <div className="min-h-screen w-screen bg-[#0E0E0E] text-white flex flex-col justify-between">
       {responseScreen ? (
-        <div ref={chatContainerRef} className="flex-1 py-12 w-full max-w-[70vw] mx-auto flex flex-col gap-6">
+        <div ref={chatContainerRef} className="flex-1 py-12 mb-[120px] w-full max-w-[70vw] mx-auto flex flex-col gap-6">
           {/* Header */}
           <div className="w-full flex justify-between items-center">
             <p className="font-inter text-white font-medium text-2xl tracking-wide">
@@ -73,12 +73,12 @@ function App() {
           </div>
 
           {/* Chat Area */}
-          <div className="mt-8 flex-1 overflow-y-auto flex flex-col gap-6">
+          <div className="chat-container mt-8 flex-1 overflow-y-auto flex  flex-col gap-6">
 
             {
              messages?.map((msg,index)=>{
               return(
-                <div key={index} className={`bg-[#181818] ${msg.type ==="userMsg"?"self-end":"self-start"} p-4 rounded-full px-6`}>
+                <div key={index} className={`bg-[#181818] ${msg.type ==="userMsg"?"self-end":"self-start"} min-w-fit p-4 rounded-3xl px-6`}>
                   {msg.text}
                 </div>
               )
